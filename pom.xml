@@ -7,4 +7,9 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <maven.compiler.target>1.12</maven.compiler.target>
+        <maven.compiler.source>1.12</maven.compiler.source>
+    </properties>
+
 </project>
