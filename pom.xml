@@ -8,6 +8,6 @@
     <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.release>12</maven.compiler.release>
+        <maven.compiler.release>8</maven.compiler.release>
     </properties>
 </project>
