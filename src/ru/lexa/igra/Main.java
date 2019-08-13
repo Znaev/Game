@@ -27,7 +27,6 @@ public class Main extends Application {
         //SecondWindow.setTitle("Второе Окно");
         //SecondWindow.initModality(Modality.WINDOW_MODAL);
         //SecondWindow.initOwner(primaryStage);
-        //SecondWindow.setX(primaryStage.getX()+ 200);
         //SecondWindow.setY(primaryStage.getY()+ 100);
 
         btnBack.setOnAction(ae -> primaryStage.setScene(MainScene));
