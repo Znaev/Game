@@ -2,7 +2,7 @@ package ru.lexa.igra;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import ru.lexa.igra.Levels.LevelFirst;
+import ru.lexa.igra.levels.LevelFirst;
 
 public class Main extends Application {
     @Override

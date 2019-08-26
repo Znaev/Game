@@ -10,28 +10,30 @@ import javafx.scene.layout.RowConstraints;
 import java.util.ArrayList;
 
 public class ButtonRootFactory {
-    public static GridPane generateButtonRoot(double width, double height, int buttonsCount, int insetsCount, ArrayList<Button> buttons) {
+    public static GridPane generateButtonRoot(double width, double height, int insetsCount, ArrayList<Button> buttons) {
+        int buttonsCount = buttons.size();
+        int sqrtButtons = (int)Math.sqrt(buttonsCount);
         GridPane buttonRoot = new GridPane();
-        double button_width = width / Math.sqrt(buttonsCount);
-        for (int i = 0; i < Math.sqrt(buttonsCount); i++) {
-            ColumnConstraints column_button = new ColumnConstraints(button_width, button_width, Double.MAX_VALUE);
-            column_button.setHgrow(Priority.ALWAYS);
-            buttonRoot.getColumnConstraints().add(column_button);
+        double buttonWidth = width / sqrtButtons;
+        for (int i = 0; i < sqrtButtons; i++) {
+            ColumnConstraints columnButton = new ColumnConstraints(buttonWidth, buttonWidth, Double.MAX_VALUE);
+            columnButton.setHgrow(Priority.ALWAYS);
+            buttonRoot.getColumnConstraints().add(columnButton);
         }
-        double buttons_height = (height / 3) * 2;
-        double button_height = buttons_height / Math.sqrt(buttonsCount);
-        for (int i = 0; i < Math.sqrt(buttonsCount); i++) {
-            RowConstraints row_button = new RowConstraints(button_height, button_height, Double.MAX_VALUE);
-            row_button.setVgrow(Priority.ALWAYS);
-            buttonRoot.getRowConstraints().add(row_button);
+        double buttonsHeight = (height / 3) * 2;
+        double buttonHeight = buttonsHeight / sqrtButtons;
+        for (int i = 0; i < sqrtButtons; i++) {
+            RowConstraints rowButton = new RowConstraints(buttonHeight, buttonHeight, Double.MAX_VALUE);
+            rowButton.setVgrow(Priority.ALWAYS);
+            buttonRoot.getRowConstraints().add(rowButton);
         }
         for (int i = 0; i < buttonsCount; i++) {
-            int indexColumn = i % (int) Math.sqrt(buttonsCount);
-            int indexRow = i / (int) Math.sqrt(buttonsCount);
+            int indexColumn = i % sqrtButtons;
+            int indexRow = i / sqrtButtons;
             buttonRoot.add(buttons.get(i), indexColumn, indexRow);
             GridPane.setMargin(buttons.get(i), new Insets(insetsCount));
         }
-        buttonRoot.setPrefSize(width, button_height);
+        buttonRoot.setPrefSize(width, buttonHeight);
         buttonRoot.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         return buttonRoot;
     }

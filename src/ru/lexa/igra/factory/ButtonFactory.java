@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import ru.lexa.igra.Levels.LevelSecond;
+import ru.lexa.igra.levels.LevelSecond;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,9 +15,9 @@ import java.util.Random;
 public class ButtonFactory {
     private static Random random = new Random(System.currentTimeMillis());
 
-    private static void randomEvent(Stage MainStage, Scene MainScene) {
+    private static void randomEvent(Stage mainStage, Scene mainScene) {
         Button btnBack = new Button("Вернуться");
-        btnBack.setOnAction(ae -> MainStage.setScene(MainScene));
+        btnBack.setOnAction(ae -> mainStage.setScene(mainScene));
         int num = random.nextInt(2);
         if (num == 0) {
             Label forest = new Label("Это лес");
@@ -25,7 +25,7 @@ public class ButtonFactory {
             forestRoot.setBottom(btnBack);
             BorderPane.setAlignment(btnBack, Pos.CENTER);
             Scene forestScene = new Scene(forestRoot, 200, 150);
-            MainStage.setScene(forestScene);
+            mainStage.setScene(forestScene);
         }
         if (num == 1) {
             Label dungeon = new Label("Это подземелье");
@@ -33,17 +33,17 @@ public class ButtonFactory {
             dungeonRoot.setBottom(btnBack);
             BorderPane.setAlignment(btnBack, Pos.CENTER);
             Scene dungeonScene = new Scene(dungeonRoot, 200, 150);
-            MainStage.setScene(dungeonScene);
+            mainStage.setScene(dungeonScene);
         }
     }
 
 
-    public static ArrayList<Button> firstGenerateButtons(int countButtons, Stage mainStage, Scene MainScene) {
+    public static ArrayList<Button> firstGenerateButtons(int countButtons, Stage mainStage, Scene mainScene) {
         ArrayList<Button> buttons = new ArrayList<>();
         for (int i = 0; i < countButtons; i++) {
             Button button = new Button();
             button.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            button.setOnAction(ae -> randomEvent(mainStage, MainScene));
+            button.setOnAction(ae -> randomEvent(mainStage, mainScene));
             buttons.add(button);
         }
         int indexKey = random.nextInt(countButtons);
@@ -67,12 +67,12 @@ public class ButtonFactory {
     }
 
 
-    public static ArrayList<Button> secondGenerateButtons(int countButtons, Stage MainStage, Scene MainScene) {
+    public static ArrayList<Button> secondGenerateButtons(int countButtons, Stage mainStage, Scene mainScene) {
         ArrayList<Button> buttons = new ArrayList<>();
         for (int i = 0; i < countButtons; i++) {
             Button button = new Button();
             button.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            button.setOnAction(ae -> randomEvent(MainStage, MainScene));
+            button.setOnAction(ae -> randomEvent(mainStage, mainScene));
             buttons.add(button);
         }
         int indexKey = random.nextInt(countButtons);

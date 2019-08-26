@@ -1,4 +1,4 @@
-package ru.lexa.igra.Levels;
+package ru.lexa.igra.levels;
 
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
@@ -13,27 +13,28 @@ import ru.lexa.igra.factory.FlowPaneFactory;
 
 import java.util.ArrayList;
 
-public class LevelSecond {
-    static public void startLevelSecond(Stage mainStage) {
-        Label stat_health = new Label("Здоровье:");
-        Label stat_stamina = new Label("Выносливость:");
-        Label stat_gold = new Label("Золото:");
-        Label stat_name = new Label("Имя:");
+
+public class LevelFirst {
+
+    static public void startLevelFirst(Stage mainStage) {
+        Label statHealth = new Label("Здоровье:");
+        Label statStamina = new Label("Выносливость:");
+        Label statGold = new Label("Золото:");
+        Label statName = new Label("Имя:");
         double width = 300;
         double height = width * 1.5;
         int insetsCount = 5;
-        int buttonsCount = 9;
+        int buttonsCount = 4;
         FlowPane characterStats = FlowPaneFactory.generateFlowPane(width, height, insetsCount,
-                stat_name, stat_health, stat_stamina, stat_gold);
+                statName, statHealth, statStamina, statGold);
         FlowPane mainRoot = new FlowPane(Orientation.VERTICAL, characterStats);
         mainStage.setTitle("Игра");
         Scene mainScene = new Scene(mainRoot, width, height);
         mainStage.setScene(mainScene);
-        ArrayList<Button> buttons = ButtonFactory.secondGenerateButtons(buttonsCount, mainStage, mainScene);
-        GridPane buttonRoot = ButtonRootFactory.generateButtonRoot(width, height, buttonsCount, insetsCount, buttons);
+        ArrayList<Button> buttons = ButtonFactory.firstGenerateButtons(buttonsCount, mainStage, mainScene);
+        GridPane buttonRoot = ButtonRootFactory.generateButtonRoot(width, height, insetsCount, buttons);
         mainRoot.getChildren().add(buttonRoot);
         mainStage.show();
     }
-
-
 }
+
