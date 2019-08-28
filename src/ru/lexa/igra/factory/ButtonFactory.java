@@ -7,9 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import ru.lexa.igra.levels.LevelSecond;
+import ru.lexa.igra.storage.LevelStorage;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
 
 
 public class ButtonFactory {
@@ -48,19 +50,16 @@ public class ButtonFactory {
         }
         int indexKey = random.nextInt(countButtons);
         int index = random.nextInt(countButtons);
-        while (indexKey == index) {
-            index = random.nextInt(countButtons);
-        }
+        while (index == indexKey) index = random.nextInt(countButtons);
         int indexDoor = index;
-        buttons.get(indexKey).setOnAction(ae ->
-            buttons.get(indexKey).setText("Ключ"));
-        buttons.get(indexDoor).setOnAction(ae ->
+        LevelStorage.getInstance().setDoor(buttons.get(indexDoor));
+        LevelStorage.getInstance().setKey(buttons.get(indexKey));
+        LevelStorage.getInstance().getKey().setOnAction(ae -> LevelStorage.getInstance().getKey().setText("Ключ"));
+        LevelStorage.getInstance().getDoor().setOnAction(ae ->
         {
-            buttons.get(indexDoor).setText("Дверь");
-            buttons.get(indexDoor).setOnAction(AE -> {
-                if (buttons.get(indexKey).getText().equals("Ключ")) {
-                    LevelSecond.startLevelSecond(mainStage);
-                }
+            LevelStorage.getInstance().getDoor().setText("Дверь");
+            LevelStorage.getInstance().getDoor().setOnAction(AE -> {
+                if ( LevelStorage.getInstance().getKey().getText().equals("Ключ")) LevelSecond.startLevelSecond(mainStage);
             });
         });
         return buttons;
@@ -77,23 +76,19 @@ public class ButtonFactory {
         }
         int indexKey = random.nextInt(countButtons);
         int index = random.nextInt(countButtons);
-        while (indexKey == index) {
-            index = random.nextInt(countButtons);
-        }
+        while (index == indexKey) index = random.nextInt(countButtons);
         int indexDoor = index;
-        buttons.get(indexKey).setOnAction(ae ->
-            buttons.get(indexKey).setText("Ключ"));
-        buttons.get(indexDoor).setOnAction(ae ->
+        LevelStorage.getInstance().setDoor(buttons.get(indexDoor));
+        LevelStorage.getInstance().setKey(buttons.get(indexKey));
+        LevelStorage.getInstance().getKey().setOnAction(ae -> LevelStorage.getInstance().getKey().setText("Ключ"));
+        LevelStorage.getInstance().getDoor().setOnAction(ae ->
         {
-            buttons.get(indexDoor).setText("Дверь");
-            buttons.get(indexDoor).setOnAction(AE -> {
-                if (buttons.get(indexKey).getText().equals("Ключ")) {
-                    buttons.get(indexDoor).setText("Конец");
-                }
+            LevelStorage.getInstance().getDoor().setText("Дверь");
+            LevelStorage.getInstance().getDoor().setOnAction(AE -> {
+                if ( LevelStorage.getInstance().getKey().getText().equals("Ключ"))
+                    LevelStorage.getInstance().getDoor().setText("Конец");
             });
         });
         return buttons;
     }
-
-
-}
+    }
