@@ -11,7 +11,6 @@ import ru.lexa.igra.storage.LevelStorage;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.Level;
 
 
 public class ButtonFactory {
@@ -59,7 +58,8 @@ public class ButtonFactory {
         {
             LevelStorage.getInstance().getDoor().setText("Дверь");
             LevelStorage.getInstance().getDoor().setOnAction(AE -> {
-                if ( LevelStorage.getInstance().getKey().getText().equals("Ключ")) LevelSecond.startLevelSecond(mainStage);
+                if (LevelStorage.getInstance().getKey().getText().equals("Ключ"))
+                    LevelSecond.startLevelSecond(mainStage);
             });
         });
         return buttons;
@@ -85,10 +85,10 @@ public class ButtonFactory {
         {
             LevelStorage.getInstance().getDoor().setText("Дверь");
             LevelStorage.getInstance().getDoor().setOnAction(AE -> {
-                if ( LevelStorage.getInstance().getKey().getText().equals("Ключ"))
+                if (LevelStorage.getInstance().getKey().getText().equals("Ключ"))
                     LevelStorage.getInstance().getDoor().setText("Конец");
             });
         });
         return buttons;
     }
-    }
+}
